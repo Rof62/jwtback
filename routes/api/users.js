@@ -22,7 +22,7 @@ router.post("/register", (req, res) => {
             if (err) throw err;
             let idUser = result.insertId; // On récupére l'id de la dernière insertion
             const sqlSelect =
-              "SELECT idUsers, name, email FROM users WHERE idUser = ?";
+              "SELECT idusers, name, email FROM users WHERE idUser = ?";
             connection.query(sqlSelect, [idUser], (err, result) => {
               // On récupère les données correspondant à cet id -> front
               if (err) throw err;
@@ -49,7 +49,7 @@ router.post("/login", (req, res) => {
       if (result.length > 0) {
         if (bcrypt.compareSync(password, result[0].password)) {
           const token = jsonwebtoken.sign({}, key, {
-            subject: result[0].idUsers.toString(),
+            subject: result[0].idusers.toString(),
             expiresIn: 3600 * 24 * 30,
             algorithm: "RS256",
           });
