@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(cookie()); // récupére les requêtes entrantes et extrait les cookies
 
-const port = process.env.MYSQL_PORT || 8000;
+const port = process.env.PORT || 8000;
 
 require("./database");
 
